@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .container
+    video(src="/videos/The.Big.Bang.Theory.S08E11.HDTV.x264-LOL.mp4" controls)
+      track(kind="subtitles" src="/videos/The.Big.Bang.Theory.S08E11.HDTV.x264-LOL.vtt" srclang="en" hidden)
+    #banner
+      i.controls.previous.fa.fa-caret-left.fa-3x
+      #subtitles
+        h1 
+          //- Here will go the subtitles
+      i.controls.next.fa.fa-caret-right.fa-3x
+    #balloon
+      ul
+        li
+          a(href="#balloon-1") Translation
+        li
+          a(href="#balloon-2") Images
+      #balloon-1
+          p Hello
+      #balloon-2
+          p hi
+              
+  

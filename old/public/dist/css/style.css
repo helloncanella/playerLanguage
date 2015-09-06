@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex; }
+  body .container {
+    margin: auto; }
+    body .container #banner {
+      opacity: 1;
+      background: transparent;
+      position: relative;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around; }
+      body .container #banner #subtitles {
+        text-align: center;
+        color: white;
+        position: relative;
+        z-index: 15; }
+      body .container #banner .controls {
+        color: transparent; }
+
+.pausedVideo#banner {
+  opacity: 0.5 !important;
+  background: black !important; }
+
+.pausedVideo#subtitles, .pausedVideo.controls {
+  color: yellow !important; }
+
+/*# sourceMappingURL=style.css.map */

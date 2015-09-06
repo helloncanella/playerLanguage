@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+  #balloon
+    ul
+      li
+        a(href="#images-content") Images  
+      li
+        a(href="#translation-content") Translation
+    .content
+      #images-content
+        div
+          img(src="", alt="")
+        div
+          img(src="", alt="")
+        div
+          img(src="", alt="")
+        div
+          img(src="", alt="")
+        div
+          img(src="", alt="")
+        div
+          img(src="", alt="")
+      #translation-content 
+        .add
+        #audio
+          a(href="#")
+            audio(src="")
+            i.fa.fa-play-circle-o.fa-2x  
+        #translation
+          #text
+            h2 text
+          #list-translation
+            ol
+              li first translation
+              li second translation  
+  div#text 
+    input(type="text" placeholder='text')
+  div#from
+    input(type="text" placeholder='from')
+  div#to   
+    input(type="text" placeholder='to')
+  
