@@ -1,0 +1,44 @@
+{
+  "sentences": [{
+    "trans": "monkey",
+    "orig": "macaco",
+    "backend": 0
+  }],
+  "dict": [{
+    "pos": "substantivo",
+    "terms": ["monkey", "ape", "jack", "macaco", "simian", "jackanapes", "hoist"],
+    "entry": [{
+      "word": "monkey",
+      "reverse_translation": ["macaco", "mono", "símio", "bugio", "bate-estacas", "traquinas"],
+      "score": 0.51879317
+    }, {
+      "word": "ape",
+      "reverse_translation": ["macaco", "símio", "imitador"],
+      "score": 0.07243976
+    }, {
+      "word": "jack",
+      "reverse_translation": ["tomada", "macaco", "odre", "cavalete de serrador", "operário braçal", "marujo"],
+      "score": 0.043936934
+    }, {
+      "word": "macaco",
+      "reverse_translation": ["macaco", "variedade de lémure"]
+    }, {
+      "word": "simian",
+      "reverse_translation": ["símio", "macaco", "mono", "bugio"]
+    }, {
+      "word": "jackanapes",
+      "reverse_translation": ["indivíduo arrogante", "macaco", "pateta"]
+    }, {
+      "word": "hoist",
+      "reverse_translation": ["guincho", "guindaste", "molinete", "macaco"]
+    }],
+    "base_form": "macaco",
+    "pos_enum": 1
+  }],
+  "src": "pt",
+  "confidence": 0.93574297,
+  "ld_result": {
+    "srclangs": ["pt"],
+    "srclangs_confidences": [0.93574297]
+  }
+}

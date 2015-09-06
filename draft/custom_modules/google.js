@@ -1,26 +1,9 @@
 var googleImages = require('google-images');
 var querystring = require('querystring');
 var https = require('https');
+var concat = require('concat-stream');
 
 module.exports = {
-
-  VoiceUrlComposer: function(data) {
-    //composition audio of word's url
-    host = "https://translate.google.com/translate_tts?";
-    queryObject = {
-      ie: "UTF-8",
-      client: "tw-ob",
-      q: data.expression,
-      tl: data.from,
-      total: 1,
-      idx: 0,
-      textlen: 2
-    }
-    query = querystring.stringify(queryObject);
-    url = host + query
-
-    return url
-  },
 
   Translator: function(data) {
     //raw translation from translate.google.com
@@ -45,12 +28,12 @@ module.exports = {
 
     url = 'https://translate.googleapis.com/translate_a/single?' + query
 
-    var translation = new Promise(function(resolve,reject){
+    var translation = new Promise(function(resolve, reject) {
       https.get(url, function(res) {
-        res.on('data', function(data) {
-          translationData = data.toString()
-          resolve(translationData);
-        })
+        res.pipe(concat(function(data) {
+          translationData = data.toString();
+          resolve(JSON.parse(translationData));
+        }));
       });
     });
 

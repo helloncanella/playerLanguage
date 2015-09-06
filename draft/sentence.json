@@ -1,0 +1,13 @@
+{
+  "sentences": [{
+    "trans": "my beautiful house",
+    "orig": "minha casa bonita",
+    "backend": 0
+  }],
+  "src": "pt",
+  "confidence": 0.10462745,
+  "ld_result": {
+    "srclangs": ["pt"],
+    "srclangs_confidences": [0.10462745]
+  }
+}

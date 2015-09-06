@@ -7,15 +7,14 @@ var Async = require('async');
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Balloon' });
+  res.render('index', {
+    title: 'Balloon'
+  });
 });
 
 router.get('/translation', function(req, res) {
   requestedExpressionData = req.query;
   Async.parallel({
-    googleVoiceUrl: function(callback) {
-      callback(null, google.VoiceUrlComposer(requestedExpressionData));
-    },
     googleImages: function(callback) {
       google.Images(requestedExpressionData).then(function(photos) {
         callback(null, photos);
@@ -31,7 +30,5 @@ router.get('/translation', function(req, res) {
     res.send(results);
   });
 });
-
-
 
 module.exports = router;

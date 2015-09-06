@@ -5,23 +5,10 @@ block content
   #balloon
     ul
       li
-        a(href="#images-content") Images  
-      li
         a(href="#translation-content") Translation
+      li
+        a(href="#images-content") Images  
     .content
-      #images-content
-        div
-          img(src="", alt="")
-        div
-          img(src="", alt="")
-        div
-          img(src="", alt="")
-        div
-          img(src="", alt="")
-        div
-          img(src="", alt="")
-        div
-          img(src="", alt="")
       #translation-content 
         .add
         #audio
@@ -32,13 +19,24 @@ block content
           #text
             h2 text
           #list-translation
-            ol
-              li first translation
-              li second translation  
+      #images-content
+            div
+              img(src="", alt="")
+            div
+              img(src="", alt="")
+            div
+              img(src="", alt="")
+            div
+              img(src="", alt="")
+            div
+              img(src="", alt="")
+            div
+              img(src="", alt="")
+                
   div#text 
-    input(type="text" placeholder='text')
+    input(type="text" placeholder='text' value='macaco')
   div#from
-    input(type="text" placeholder='from')
+    input(type="text" placeholder='from' value='pt-BR')
   div#to   
-    input(type="text" placeholder='to')
+    input(type="text" placeholder='to' value='en')
   
