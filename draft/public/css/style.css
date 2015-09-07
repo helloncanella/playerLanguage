@@ -5,7 +5,7 @@ body {
 
 #balloon {
   width: 500px;
-  height: 350px;
+  height: auto;
   display: flex;
   flex-direction: column; }
   #balloon > ul {
@@ -24,13 +24,14 @@ body {
     display: flex;
     justify-content: flex-end;
     border: 1px solid blue;
-    height: 300px;
+    height: auto;
     position: relative; }
     #balloon .content #translation-content {
       width: 80%;
       height: 60%;
       margin-top: 10%;
       margin-right: 10%;
+      margin: 10% auto 10%;
       display: flex;
       justify-content: flex-end;
       border: 1px solid blue; }
@@ -52,7 +53,7 @@ body {
       width: 80%;
       height: 80%;
       border: 1px solid blue;
-      margin: auto; }
+      margin: 10%; }
       #balloon .content #images-content div {
         position: relative;
         border: 1px solid blue;

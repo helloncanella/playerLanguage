@@ -17,7 +17,6 @@ $(window).keypress(function(event) {
   var from, text, to;
   if (event.keyCode === 13) {
     text = $("#text input").val();
-    console.log(text);
     from = $("#from input").val();
     to = $("#to input").val();
     if (text && from && to) {
@@ -31,8 +30,7 @@ $(window).keypress(function(event) {
         });
         googleImages = response.googleImages;
         googleTranslation = response.googleTranslation;
-        fillDOM(googleImages, googleTranslation);
-        return console.log(JSON.stringify(googleTranslation));
+        return fillDOM(googleImages, googleTranslation);
       });
     } else {
       alert('fill all fields!');
@@ -41,26 +39,22 @@ $(window).keypress(function(event) {
 });
 
 fillDOM = function(googleImages, googleTranslation) {
-  var dictionary, sentences, terms, translation;
-  dictionary = googleTranslation.dict;
-  sentences = googleTranslation.sentences;
+  var dictionary, sentences, terms, translation, word;
   $('#list-translation ol li , #list-translation *').remove();
+  dictionary = googleTranslation.dict[0];
+  sentences = googleTranslation.sentences[0];
+  word = sentences.orig;
+  $('#translation h2').text(word);
   if (dictionary) {
-    terms = dictionary[0].terms;
-    terms.forEach(function(element, index) {
+    terms = dictionary.terms;
+    return terms.forEach(function(element, index) {
       if (index === 0) {
         $('#list-translation').append("<ol></ol>");
       }
       return $("<li>" + element + "</li>").appendTo($("#list-translation ol"));
     });
-    console.log("dictionary", terms);
   } else {
-    translation = sentences[0].trans;
-    $("#list-translation").append("<h3>" + translation + "</h3>");
-    console.log("translation", translation);
+    translation = sentences.trans;
+    return $("#list-translation").append("<h4>" + translation + "</h4>");
   }
-  return console.log({
-    googleImages: googleImages,
-    googleTranslation: googleTranslation
-  });
 };

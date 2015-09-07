@@ -8,7 +8,7 @@ $royalblue:1px solid blue;
 
 #balloon{
   width:500px;
-  height: 350px;
+  height: auto;
   display:flex;
   flex-direction: column;
   & > ul {
@@ -33,13 +33,14 @@ $royalblue:1px solid blue;
     display: flex;
     justify-content: flex-end;
     border: $royalblue;
-    height:300px;//flexivel
+    height:auto;//flexivel
     position:relative;
     #translation-content{
       width:80%;
       height:60%;
       margin-top:10%;
       margin-right:10%;
+      margin: 10% auto 10%;
       display:flex;
       justify-content: flex-end;
       border:$royalblue;
@@ -72,7 +73,7 @@ $royalblue:1px solid blue;
       width: 80%;
       height: 80%;
       border: $royalblue;
-      margin: auto;
+      margin: 10%;
       div{
         position: relative;
         border: $royalblue;
