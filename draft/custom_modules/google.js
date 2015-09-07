@@ -5,6 +5,7 @@ var concat = require('concat-stream');
 
 module.exports = {
 
+
   Translator: function(data) {
     //raw translation from translate.google.com
     var translationData;
@@ -44,7 +45,14 @@ module.exports = {
     // request Images's URL from images.google.com
     var pageImages = new Array();
     var imagesOfpage;
-    pages = [1, 2, 3];
+    pages = new Array();
+
+    numberOfPages = 3
+
+    for(var i=1; i<=numberOfPages; i++){
+      console.log(i);
+      pages[i] = i;
+    }
 
     var searchOfPhotos = new Promise(function(resolve, reject) {
       for (var i = 0; i < pages.length; i++) {
