@@ -1,3 +1,11 @@
+subtitles.mouseup () ->
+  selectedText = window.getSelection().toString()
+  if selectedText
+    insertBalloon(selectedText,from,to)
+  return
+
+#################################################
+
 tabs = $('#balloon').tabs()
 tabs.find(".ui-tabs-nav").sortable
   axis:"x"
@@ -51,4 +59,3 @@ insertTranslation = (googleTranslation) ->
   else
     translation = sentences[0].trans
     $("#list-translation").append("<p>"+translation+"</p>")
-insertBalloon

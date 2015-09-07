@@ -1,4 +1,4 @@
-var insertImages, insertTranslation, tabs;
+var insertBalloon, insertImages, insertTranslation, tabs;
 
 tabs = $('#balloon').tabs();
 
@@ -18,33 +18,22 @@ $('#header li').click(function() {
   });
 });
 
-$(window).keypress(function(event) {
-  var from, text, to;
-  if (event.keyCode === 13) {
-    text = $("#text input").val();
-    from = $("#from input").val();
-    to = $("#to input").val();
-    if (text && from && to) {
-      $.get("/translation", {
-        expression: text,
-        from: from,
-        to: to
-      }, function(response) {
-        var googleImages, googleTranslation;
-        $('#audio a').click(function() {
-          console.log("aqui");
-          return voice(from, text);
-        });
-        googleImages = response.googleImages;
-        googleTranslation = response.googleTranslation;
-        insertTranslation(googleTranslation);
-        return insertImages(googleImages);
-      });
-    } else {
-      alert('fill all fields!');
-    }
-  }
-});
+insertBalloon = function(text, from, to) {
+  $.get("/translation", {
+    expression: text,
+    from: from,
+    to: to
+  }, function(response) {
+    var googleImages, googleTranslation;
+    $('#audio a').click(function() {
+      return voice(from, text);
+    });
+    googleImages = response.googleImages;
+    googleTranslation = response.googleTranslation;
+    insertTranslation(googleTranslation);
+    return insertImages(googleImages);
+  });
+};
 
 insertImages = function(pagesFromGoogleImages) {
   var listOfImgUrls, pages;
@@ -87,3 +76,5 @@ insertTranslation = function(googleTranslation) {
     return $("#list-translation").append("<p>" + translation + "</p>");
   }
 };
+
+insertBalloon;

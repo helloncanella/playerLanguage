@@ -1,0 +1,102 @@
+$thinGray: 1px solid gray;
+#balloon {
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  & > ul {
+    height: 50px;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    li:not(:first-child) {
+
+      // margin-left: 3vw;
+    }
+    li {
+      z-index: 10;
+      background: gray;
+      position: relative;
+      top: 1px;
+      border: $thinGray;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      display: flex;
+      a {
+        padding: 7px 15px;
+        margin: auto;
+      }
+    }
+    li:first-child {
+      background: white;
+    }
+  }
+  .content {
+    z-index: 2;
+    position: relative;
+    border: $thinGray;
+    border-radius: 0 5px 5px 5px;
+    display: flex;
+    justify-content: flex-end;
+    height: auto; //flexivel
+    position: relative;
+    #translation-content {
+      width: 80%;
+      height: 60%;
+      margin: 5% auto;
+      display: flex;
+      justify-content: flex-end;
+      #audio {
+        height: 50px;
+        width: 50px;
+        margin: auto;
+      }
+      #translation {
+        width: 75%;
+
+        //height
+        padding-left: 7%;
+        p {
+          margin-top: 4%;
+        }
+        h3 {
+          margin-bottom: 2%;
+        }
+        #text {
+
+        }
+        #list-translation {
+          li:not(:first-child) {
+            padding-top: 5px;
+          }
+        }
+      }
+    }
+    #images-content {
+      margin: 2%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      div {
+        margin-right: 1%;
+      }
+    }
+  }
+  .add {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  h2 {
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
