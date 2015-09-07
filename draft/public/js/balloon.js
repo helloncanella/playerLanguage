@@ -1,4 +1,4 @@
-var googleImages, googleTranslation, insertImages, insertTranslation, tabs;
+var insertImages, insertTranslation, tabs;
 
 tabs = $('#balloon').tabs();
 
@@ -9,9 +9,14 @@ tabs.find(".ui-tabs-nav").sortable({
   }
 });
 
-googleImages = void 0;
-
-googleTranslation = void 0;
+$('#header li').click(function() {
+  $(this).siblings().css({
+    "background": "gray"
+  });
+  return $(this).css({
+    "background": "white"
+  });
+});
 
 $(window).keypress(function(event) {
   var from, text, to;
@@ -25,6 +30,7 @@ $(window).keypress(function(event) {
         from: from,
         to: to
       }, function(response) {
+        var googleImages, googleTranslation;
         $('#audio a').click(function() {
           console.log("aqui");
           return voice(from, text);

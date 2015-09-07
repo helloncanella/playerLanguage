@@ -1,13 +1,14 @@
 body {
   padding: 50px;
   font: 1.62em "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: royalblue; }
+  color: black; }
 
 #balloon {
   width: 400px;
   height: auto;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  background: white; }
   #balloon > ul {
     height: 50px;
     list-style-type: none;
@@ -15,11 +16,24 @@ body {
     display: flex;
     margin: 0; }
     #balloon > ul li {
+      z-index: 10;
+      background: gray;
+      position: relative;
+      top: 1px;
+      border: 1px solid gray;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
       display: flex; }
       #balloon > ul li a {
         padding: 7px 15px;
         margin: auto; }
+    #balloon > ul li:first-child {
+      background: white; }
   #balloon .content {
+    z-index: 2;
+    position: relative;
+    border: 1px solid gray;
+    border-radius: 0px 5px 5px 5px;
     display: flex;
     justify-content: flex-end;
     height: auto;

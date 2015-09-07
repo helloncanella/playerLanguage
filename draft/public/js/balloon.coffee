@@ -4,8 +4,9 @@ tabs.find(".ui-tabs-nav").sortable
   stop: () ->
     tabs.tabs("refresh")
 
-googleImages = undefined
-googleTranslation = undefined
+$('#header li').click () ->
+  $(this).siblings().css({"background":"gray"});
+  $(this).css({"background":"white"});
 
 $(window).keypress (event) ->
   if event.keyCode == 13
