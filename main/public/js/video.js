@@ -1,10 +1,4 @@
-var countClick, currentCue, subtitles, textTrack, textTrackList, video;
-
-$(function() {
-  return $('#balloon').tabs({
-    event: "mouseover"
-  });
-});
+var balloon, countClick, currentCue, mouseXPosition, subtitles, textTrack, textTrackList, video;
 
 $(window).on("resize load", function() {
   $("#banner").css({
@@ -21,11 +15,55 @@ video = $("video")[0];
 
 subtitles = $("#subtitles h1");
 
-subtitles.mouseup(function() {
-  var selectedText;
+balloon = $('#balloon');
+
+mouseXPosition = {
+  start: void 0,
+  end: void 0
+};
+
+$("video").click(function() {
+  return balloon.css({
+    "display": "none"
+  });
+});
+
+subtitles.mousedown(function(event) {
+  return mouseXPosition.start = event.pageX;
+});
+
+subtitles.mouseup(function(event) {
+  var averageMouseXPoint, ballonPosition, from, selectedText, to, videoPosition;
+  mouseXPosition.end = event.pageX;
+  averageMouseXPoint = (mouseXPosition.end + mouseXPosition.start) / 2;
   selectedText = window.getSelection().toString();
   if (selectedText) {
+    from = "en-US";
+    to = "pt-BR";
     insertBalloon(selectedText, from, to);
+    balloon.css({
+      "display": "flex",
+      "left": averageMouseXPoint - $('video').offset().left,
+      "top": $("#banner").position().top,
+      "transform": "translate(-50%,-100%)"
+    });
+    videoPosition = $('video').position();
+    ballonPosition = balloon.position();
+    videoPosition.right = videoPosition.left + $('video').width();
+    ballonPosition.right = ballonPosition.left + $('#balloon').width();
+    if (videoPosition.left > ballonPosition.left) {
+      balloon.css({
+        "transform": 'translate(0,-100%)',
+        "left": '5px'
+      });
+    }
+    if (videoPosition.right < ballonPosition.right) {
+      console.log("right");
+      balloon.css({
+        "transform": "translate(-75%,-100%)",
+        "right": '5px'
+      });
+    }
   }
 });
 
@@ -79,7 +117,7 @@ $(window).on("keydown", function(event) {
   }
 });
 
-$("#banner").mouseover(function() {
+$("#banner, #balloon").mouseover(function() {
   video.pause();
   return $('#banner,#subtitles,.controls').addClass('pausedVideo');
 });

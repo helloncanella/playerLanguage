@@ -1,7 +1,3 @@
-$ () ->
-  $('#balloon').tabs
-    event:"mouseover"
-
 $(window).on "resize load", ()->
   $("#banner").css
     "width": $('video').width()
@@ -14,11 +10,54 @@ currentCue = undefined
 video = $("video")[0]
 subtitles =$("#subtitles h1")
 
-subtitles.mouseup () ->
+balloon = $('#balloon')
+mouseXPosition =
+  start: undefined
+  end: undefined
+
+$("video").click () ->
+  balloon.css
+    "display":"none"
+
+subtitles.mousedown (event) ->
+  mouseXPosition.start = event.pageX
+
+
+
+subtitles.mouseup (event) ->
+  mouseXPosition.end = event.pageX
+  averageMouseXPoint = (mouseXPosition.end + mouseXPosition.start)/2
   selectedText = window.getSelection().toString()
   if selectedText
+    from="en-US"
+    to = "pt-BR"
     insertBalloon(selectedText,from,to)
+    balloon.css
+      "display":"flex"
+      "left": averageMouseXPoint - $('video').offset().left
+      "top": $("#banner").position().top
+      "transform": "translate(-50%,-100%)"
+
+    videoPosition = $('video').position()
+    ballonPosition = balloon.position()
+
+
+    videoPosition.right = videoPosition.left+ $('video').width()
+    ballonPosition.right = ballonPosition.left+ $('#balloon').width()
+
+    if(videoPosition.left>ballonPosition.left)
+      balloon.css
+        "transform": 'translate(0,-100%)'
+        "left": '5px'
+    if(videoPosition.right<ballonPosition.right)
+      console.log "right"
+      balloon.css
+        "transform": "translate(-75%,-100%)"
+        "right": '5px'
+
   return
+
+
 
 textTrack = video.textTracks[0];
 textTrack.mode = "hidden"
@@ -58,7 +97,7 @@ $(window).on "keydown", (event)->
         video.currentTime = nextCue.startTime
         return
 
-$("#banner").mouseover () ->
+$("#banner, #balloon").mouseover () ->
   video.pause()
   $('#banner,#subtitles,.controls').addClass('pausedVideo')
 $("#banner").mouseout () ->

@@ -10,7 +10,8 @@ $('#header li').click () ->
 
 insertBalloon = (text,from,to) ->
   $.get "/translation",{expression:text,from:from,to:to}, (response) ->
-    $('#audio a').click () ->
+    $('#audio a').click (event) ->
+      event.preventDefault();
       voice(from,text) # Speaking
     googleImages = response.googleImages
     googleTranslation = response.googleTranslation
@@ -24,12 +25,11 @@ insertImages = (pagesFromGoogleImages) ->
   listOfImgUrls = new Array()
   pages.forEach (page) ->
     page.forEach (image) ->
-      console.log image
       img = new Image()
       img.onload = () ->
         if listOfImgUrls.indexOf(image.url)==-1 #just print new urls
           listOfImgUrls.push(image.url)
-          $('#images-content').append("<div class='grid-item'><img src='"+image.url+"' height='100px'></div>")
+          $('#images-content').append("<img src='"+image.url+"' height='100px'>")
       img.src = image.url
 
 
@@ -51,4 +51,3 @@ insertTranslation = (googleTranslation) ->
   else
     translation = sentences[0].trans
     $("#list-translation").append("<p>"+translation+"</p>")
-insertBalloon
