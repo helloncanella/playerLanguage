@@ -1,4 +1,4 @@
-var balloon, countClick, currentCue, mouseXPosition, subtitles, textTrack, textTrackList, video;
+var balloon, countClick, currentCue, lastClick, lastPress, mouseXPosition, subtitles, textTrack, textTrackList, video;
 
 $(window).on("resize load", function() {
   $("#banner").css({
@@ -75,15 +75,27 @@ textTrackList = textTrack.cues;
 
 countClick = 0;
 
+lastClick = void 0;
+
 $('.controls').on("click", function(event) {
-  var indexCurrentCue, nextCue, previous;
+  var currentClick, indexCurrentCue, nextCue, previous, previousCue;
   previous = $("i.previous")[0];
   currentCue = textTrack.activeCues[0];
   indexCurrentCue = currentCue.id - 1;
   if (currentCue) {
     if (this === previous) {
-      video.currentTime = currentCue.startTime;
-      countClick++;
+      currentClick = Date.now();
+      if ((currentClick - lastClick) > 1000) {
+        console.log("one click", currentClick, lastClick);
+        video.currentTime = currentCue.startTime;
+      } else {
+        previousCue = textTrackList[indexCurrentCue - 1];
+        if (!previousCue) {
+          nextCue = textTrackList[previousCue - 2];
+        }
+        video.currentTime = previousCue.startTime;
+      }
+      lastClick = currentClick;
     } else {
       nextCue = textTrackList[indexCurrentCue + 1];
       if (!nextCue) {
@@ -95,25 +107,56 @@ $('.controls').on("click", function(event) {
   }
 });
 
+lastPress = void 0;
+
 $(window).on("keydown", function(event) {
-  var indexCurrentCue, key, next, nextCue, previous;
+  var aheadLittleBit, backLittleBit, currentPress, indexCurrentCue, key, next, nextCue, pauseAndPlay, previous, previousCue;
   key = event.keyCode;
   previous = 37;
   next = 39;
+  pauseAndPlay = 32;
+  backLittleBit = 74;
+  aheadLittleBit = 76;
   currentCue = textTrack.activeCues[0];
-  indexCurrentCue = currentCue.id - 1;
   if (currentCue) {
-    switch (key) {
-      case previous:
+    indexCurrentCue = currentCue.id - 1;
+  }
+  switch (key) {
+    case previous:
+      currentPress = Date.now();
+      if ((currentPress - lastPress) > 1000) {
+        console.log("one click", currentPress, lastPress);
         video.currentTime = currentCue.startTime;
-        return countClick++;
-      case next:
-        nextCue = textTrackList[indexCurrentCue + 1];
-        if (!nextCue) {
-          nextCue = textTrackList[indexCurrentCue + 2];
+      } else {
+        previousCue = textTrackList[indexCurrentCue - 1];
+        if (!previousCue) {
+          nextCue = textTrackList[previousCue - 2];
         }
-        video.currentTime = nextCue.startTime;
-    }
+        video.currentTime = previousCue.startTime;
+      }
+      lastPress = currentPress;
+      break;
+    case pauseAndPlay:
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+      break;
+    case next:
+      nextCue = textTrackList[indexCurrentCue + 1];
+      if (!nextCue) {
+        nextCue = textTrackList[indexCurrentCue + 2];
+      }
+      video.currentTime = nextCue.startTime;
+      break;
+    case backLittleBit:
+      console.log(video.currentTime);
+      video.currentTime -= 5;
+      break;
+    case aheadLittleBit:
+      console.log(video.currentTime);
+      video.currentTime += 5;
   }
 });
 

@@ -22,8 +22,6 @@ $("video").click () ->
 subtitles.mousedown (event) ->
   mouseXPosition.start = event.pageX
 
-
-
 subtitles.mouseup (event) ->
   mouseXPosition.end = event.pageX
   averageMouseXPoint = (mouseXPosition.end + mouseXPosition.start)/2
@@ -57,21 +55,28 @@ subtitles.mouseup (event) ->
 
   return
 
-
-
 textTrack = video.textTracks[0];
 textTrack.mode = "hidden"
 textTrackList = textTrack.cues
 countClick = 0
 
+lastClick = undefined
 $('.controls').on "click", (event)->
   previous = $("i.previous")[0]
   currentCue = textTrack.activeCues[0]
   indexCurrentCue = currentCue.id - 1
   if currentCue
     if this is previous
+      currentClick = Date.now()
+      if((currentClick-lastClick)>1000)
+        console.log "one click", currentClick, lastClick
         video.currentTime = currentCue.startTime
-        countClick++
+      else
+        previousCue = textTrackList[indexCurrentCue-1]
+        if !previousCue
+          nextCue = textTrackList[previousCue-2]
+        video.currentTime = previousCue.startTime
+      lastClick = currentClick
     else
       nextCue = textTrackList[indexCurrentCue+1]
       if !nextCue
@@ -79,23 +84,48 @@ $('.controls').on "click", (event)->
       video.currentTime = nextCue.startTime
     video.play()
 
+
+lastPress = undefined
 $(window).on "keydown", (event)->
   key = event.keyCode
-  previous = 37
-  next = 39
+  previous = 37 #left-arrow
+  next = 39 #right-arrow
+  pauseAndPlay = 32 #space
+  backLittleBit = 74 # j
+  aheadLittleBit = 76 # l
   currentCue = textTrack.activeCues[0]
-  indexCurrentCue = currentCue.id - 1
   if currentCue
-    switch key
-      when previous
+    indexCurrentCue = currentCue.id - 1
+
+  switch key
+    when previous
+      currentPress = Date.now()
+      if((currentPress-lastPress)>1000)
+        console.log "one click", currentPress, lastPress
         video.currentTime = currentCue.startTime
-        countClick++
-      when next
-        nextCue = textTrackList[indexCurrentCue+1]
-        if !nextCue
-          nextCue = textTrackList[indexCurrentCue+2]
-        video.currentTime = nextCue.startTime
-        return
+      else
+        previousCue = textTrackList[indexCurrentCue-1]
+        if !previousCue
+          nextCue = textTrackList[previousCue-2]
+        video.currentTime = previousCue.startTime
+      lastPress = currentPress
+    when pauseAndPlay
+      if(video.paused)
+        video.play()
+      else
+        video.pause()
+    when next
+      nextCue = textTrackList[indexCurrentCue+1]
+      if !nextCue
+        nextCue = textTrackList[indexCurrentCue+2]
+      video.currentTime = nextCue.startTime
+    when backLittleBit
+      console.log video.currentTime
+      video.currentTime-=5
+    when aheadLittleBit
+      console.log video.currentTime
+      video.currentTime+=5
+  return
 
 $("#banner, #balloon").mouseover () ->
   video.pause()
