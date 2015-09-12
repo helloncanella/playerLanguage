@@ -1,7 +1,21 @@
 extends layout
 
 block content
-  h1= title
+  
+  h1(style="color:royalblue") Drafts 
+  
+  h2 Bluimp Tutorial
+  form(action="/upload" method="post" enctype="multipart/form-data")
+    input#fileupload(type="file" name="files[]" data-url="upload")
+    input(type="submit" name="submit" id="Submit")
+  h2 Upload Express.js 
+  form(action="/upload" method="post" enctype="multipart/form-data")
+    input(type="file" name="file" id="file")
+    br  
+    input(type="submit" name="submit" id="Submit")
+  br
+  
+  h2 Balloon
   #balloon
     ul#header
       li
@@ -19,7 +33,7 @@ block content
           #text
             h3 
           #list-translation
-      #images-content.grid
+      #images-content
     
     
     
