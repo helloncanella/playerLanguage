@@ -23,13 +23,13 @@ mouseXPosition = {
 };
 
 $("video").click(function() {
-  return balloon.css({
+  balloon.css({
     "display": "none"
   });
 });
 
 subtitles.mousedown(function(event) {
-  return mouseXPosition.start = event.pageX;
+  mouseXPosition.start = event.pageX;
 });
 
 subtitles.mouseup(function(event) {
@@ -58,7 +58,6 @@ subtitles.mouseup(function(event) {
       });
     }
     if (videoPosition.right < ballonPosition.right) {
-      console.log("right");
       balloon.css({
         "transform": "translate(-75%,-100%)",
         "right": '5px'

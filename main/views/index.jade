@@ -1,32 +1,54 @@
 extends layout
 
 block content
-  button(onclick="var el = $('#full-screen')[0]; el.webkitRequestFullscreen();") full-screen
-  .container#full-screen
-    video(src="/videos/The.Good.the.Bad.and.the.Ugly.1966.1080p.BrRip.x264.YIFY.mp4" controls)
-      track(kind="subtitles" src="/videos/teste.vtt" srclang="en" hidden)
-    #banner
-      i.controls.previous.fa.fa-caret-left.fa-3x
-      #subtitles
-        h1 
-          //- Here will go the subtitles
-      i.controls.next.fa.fa-caret-right.fa-3x
-    #balloon
-      ul#header
-        li
-          a(href="#images-content") Images  
-        li
-          a(href="#translation-content") Translation
-      .content
-        #translation-content 
-          .add
-          #audio
-            a(href="#")
-              audio(src="")
-              i.fa.fa-play-circle-o.fa-2x  
-          #translation
-            #text
-              h3 
-            #list-translation
-        #images-content
-    
+
+  #dropRegion.uploader
+    .text 
+      h1 Drop your video and its subtitle here
+  #cinema   
+    video(src="" autoplay)
+      track(kind="subtitles" src="" srclang="en" hidden)
+    #language
+      #banner
+        i.controls.previous.fa.fa-caret-left.fa-3x
+        #subtitles
+          h1 
+            //- Here will go the subtitles
+        i.controls.next.fa.fa-caret-right.fa-3x
+      #balloon
+        ul#header
+          li
+            a(href="#images-content") Images  
+          li
+            a(href="#translation-content") Translation
+        .content
+          #translation-content 
+            .add
+            #audio
+              a(href="#")
+                audio(src="")
+                i.fa.fa-play-circle-o.fa-2x  
+            #translation
+              #text
+                h3 
+              #list-translation
+          #images-content
+    #controls
+      #progress			
+      #settings
+        .left
+          a#playPause
+            i.fa.fa-pause
+          a#volume
+            #volume-control
+              .slider
+            i.fa.fa-volume-up
+          #time
+            h4 
+              span.current
+              span.duration   
+        .right
+          a#subtitle
+            i.fa.fa-commenting-o
+          a#fullScreen
+            i.fa.fa-expand
