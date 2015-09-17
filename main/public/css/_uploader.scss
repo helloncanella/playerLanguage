@@ -1,0 +1,12 @@
+//-uploader
+#dropRegion.uploader {
+  margin: 0 auto;
+  width: 62.18vw;
+  height: 62.18vh;
+  border: 2px dashed gray;
+  display: flex;
+  .text {
+    text-align: center;
+    margin: auto;
+  }
+}

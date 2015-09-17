@@ -1,2 +1,21 @@
+@import "uploader";
 @import "video";
+@import "banner";
 @import "balloon";
+@import "controls";
+
+// body
+body {
+  color: white;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow:hidden;
+  cursor: none;
+}
+
+//-auxiliary class
+.show-flex {
+  display: flex !important;
+}
