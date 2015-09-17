@@ -1,8 +1,11 @@
 // - banner
 #banner {
+  width: 100vw;
+  height: 20vh;
+  bottom: 30vh;
   opacity: 1;
   background: transparent;
-  position: relative;
+  position: absolute;
   z-index: 0;
   display: flex;
   align-items: center;
