@@ -17,7 +17,7 @@ video {
 #banner {
   width: 100vw;
   height: 20vh;
-  bottom: 10vh;
+  bottom: 13vh;
   opacity: 1;
   background: transparent;
   position: absolute;
@@ -25,18 +25,18 @@ video {
   display: flex;
   align-items: center;
   justify-content: space-around; }
+  #banner.pausedVideo {
+    background: black !important;
+    opacity: 0.5 !important; }
   #banner #subtitles {
     text-align: center;
     color: white;
     position: relative;
-    font-size: 2em;
     z-index: 15; }
-  #banner .controls {
+    #banner #subtitles h1 {
+      font-size: 3.5em; }
+  #banner #left, #banner #right {
     color: transparent; }
-  #banner.pausedVideo {
-    color: yellow !important;
-    opacity: 0.5 !important;
-    background: black !important; }
 
 #balloon {
   width: 400px;
@@ -128,7 +128,7 @@ video {
   width: 80vw;
   height: 4.5283018868vw;
   position: absolute;
-  bottom: 2vh;
+  bottom: 4.5vh;
   left: 50vw;
   transform: translate(-50%, 0);
   visibility: hidden; }
@@ -186,6 +186,9 @@ body {
     display: none;
     width: 100%;
     height: 100%; }
+
+.pausedVideo {
+  color: yellow !important; }
 
 .show-flex {
   display: flex !important; }

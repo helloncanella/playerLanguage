@@ -1,6 +1,7 @@
 var onFullscreen = false,
     video = document.createElement('video'),
     track =  document.createElement('track');
+    
 
 var textTrack, textTrackList;
 

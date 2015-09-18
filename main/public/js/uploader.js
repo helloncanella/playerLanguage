@@ -1,5 +1,5 @@
 ;
-(function($, window, document, video, track) {
+(function($, window, document, video, textTrack, track) {
   var acceptedSubtitles = ["text/vtt", "application/x-subrip"];
   var supportedVideos = ["video/mp4", "video/ogg", "video/webm"];
 
@@ -108,7 +108,7 @@
       }
     }
   })
-})(jQuery, window, document, video, track)
+})(jQuery, window, document, video, textTrack, track)
 
 
 

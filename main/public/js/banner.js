@@ -50,8 +50,11 @@
     var currentClick, nextCue, previousCue;
 
     var previous = $("i.previous")[0],
+      textTrack = video.textTracks[0],
+      textTrackList = textTrack.cues,
       currentCue = textTrack.activeCues[0],
       indexCurrentCue = currentCue.id - 1;
+
 
     if (currentCue) {
       if (this === previous) {
@@ -79,11 +82,11 @@
 
   $("#banner, #balloon").mouseover(function() {
     video.pause();
-    $('#banner,#subtitles,.controls').addClass('pausedVideo');
+    $('#banner, #subtitles, i#right, i#left').addClass('pausedVideo');
   });
 
   $("#banner").mouseout(function() {
-    $('#banner,#subtitles,.controls').removeClass('pausedVideo');
+    $('#banner, #subtitles, i#right,  i#left').removeClass('pausedVideo');
     video.play();
   });
 

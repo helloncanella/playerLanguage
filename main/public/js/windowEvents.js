@@ -57,9 +57,12 @@
     keydown: function(event) {
       var lastPress, currentPress, indexCurrentCue, nextCue, previousCue;
 
-      var currentCue = textTrack.activeCues[0];
+      var textTrack = video.textTracks[0];
+          textTrack.mode = "hidden";
+          textTrackList = textTrack.cues;
+          currentCue = textTrack.activeCues[0];
 
-      var key = event.keyCode,
+      var pressedKey = event.keyCode,
           previous = 37,
           next = 39,
           pauseAndPlay = 32,

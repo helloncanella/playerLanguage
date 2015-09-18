@@ -15,6 +15,7 @@ var balloon =
     $("#cinema").on("click", "video", function() {
       if ($('video').css('display') != 'none') {
         $('#balloon').removeClass('show-flex');
+        $('#banner, #subtitles, i#right,  i#left').removeClass('pausedVideo');
         video.play();
       }
       window.getSelection().empty();
