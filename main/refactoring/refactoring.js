@@ -1,10 +1,10 @@
-var insertBalloon, insertImages, insertTranslation, tabs;
+var insert, insertImages, insertTranslation, tabs;
 
 subtitles.mouseup(function() {
   var selectedText;
   selectedText = window.getSelection().toString();
   if (selectedText) {
-    insertBalloon(selectedText, from, to);
+    insert(selectedText, from, to);
   }
 });
 
@@ -26,7 +26,7 @@ $('#header li').click(function() {
   });
 });
 
-insertBalloon = function(text, from, to) {
+insert = function(text, from, to) {
   $.get("/translation", {
     expression: text,
     from: from,

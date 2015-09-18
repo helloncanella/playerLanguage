@@ -1,49 +1,43 @@
 ;
 (function($, window, document, video, textTrack, textTrackList) {
 
-  var currentCue, lastClick, mouseXPosition;
+  var currentCue, lastClick;
 
   var subtitles = $("#subtitles h1"),
-      balloon = $('#balloon');
-
-  video.click(function() {
-    balloon.css({
-      "display": "none"
-    });
-  });
-
+      balloonSelector = $('#balloon');
+      mouseXPosition = {};
 
   subtitles.on({
     mousedown: function(event) {
       mouseXPosition.start = event.pageX;
     },
     mouseup: function(event) {
-      var averageMouseXPoint, ballonPosition, from, selectedText, to, videoPosition;
+      var averageMouseXPoint, balloonPosition, from, selectedText, to, videoPosition;
       mouseXPosition.end = event.pageX;
       averageMouseXPoint = (mouseXPosition.end + mouseXPosition.start) / 2;
       selectedText = window.getSelection().toString();
       if (selectedText) {
         from = "en-US";
         to = "pt-BR";
-        insertBalloon(selectedText, from, to);
-        balloon.css({
-          "display": "flex",
+        balloon.insert(selectedText, from, to);
+        balloonSelector.css({
           "left": averageMouseXPoint - $('video').offset().left,
           "top": $("#banner").position().top,
           "transform": "translate(-50%,-100%)"
         });
+        balloonSelector.toggleClass('show-flex');
         videoPosition = $('video').position();
-        ballonPosition = balloon.position();
+        balloonPosition = balloonSelector.position();
         videoPosition.right = videoPosition.left + $('video').width();
-        ballonPosition.right = ballonPosition.left + $('#balloon').width();
-        if (videoPosition.left > ballonPosition.left) {
-          balloon.css({
+        balloonPosition.right = balloonPosition.left + $('#balloon').width();
+        if (videoPosition.left > balloonPosition.left) {
+          balloonSelector.css({
             "transform": 'translate(0,-100%)',
             "left": '5px'
           });
         }
-        if (videoPosition.right < ballonPosition.right) {
-          balloon.css({
+        if (videoPosition.right < balloonPosition.right) {
+          balloonSelector.css({
             "transform": "translate(-75%,-100%)",
             "right": '5px'
           });

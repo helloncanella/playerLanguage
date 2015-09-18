@@ -7,9 +7,9 @@
     load: function(event) {
       onFullscreen = false;
     },
-    
+
     click: function(event) {
-      $("#volume-control").removeClass('show-flex')
+      $("#volume-control").removeClass('show-flex');
     },
 
     showcontrols: function(event) {

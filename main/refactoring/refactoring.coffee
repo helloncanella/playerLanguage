@@ -1,7 +1,7 @@
 subtitles.mouseup () ->
   selectedText = window.getSelection().toString()
   if selectedText
-    insertBalloon(selectedText,from,to)
+    insert(selectedText,from,to)
   return
 
 #################################################
@@ -16,7 +16,7 @@ $('#header li').click () ->
   $(this).siblings().css({"background":"gray"});
   $(this).css({"background":"white"});
 
-insertBalloon = (text,from,to) ->
+insert = (text,from,to) ->
   $.get "/translation",{expression:text,from:from,to:to}, (response) ->
     $('#audio a').click () ->
       voice(from,text) # Speaking
