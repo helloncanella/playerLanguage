@@ -36,7 +36,7 @@ router.get('/srt2vtt', function(req, res) {
 
   name = req.query.fileName;
 
-  if (!vttPath || name!=previousName) {
+  if (name!=previousName) {
     subtitle = req.query.subtitle;
 
     var srtPath = __dirname + '/../public/subtitles/' + name
@@ -45,13 +45,13 @@ router.get('/srt2vtt', function(req, res) {
       if (err) throw err;
     });
 
-    vttPath = __dirname + '/../public/subtitles/' + name + '.vtt'
+    vttPath = __dirname + '/../public/subtitles/captions.vtt';
 
     fs.createReadStream(srtPath)
       .pipe(srt2vtt())
-      .pipe(fs.createWriteStream(vttPath))
+      .pipe(fs.createWriteStream(vttPath));
 
-    vttPath = '/subtitles/' + name + '.vtt'
+    vttPath = '/subtitles/captions.vtt';
 
     previousName = name;
 

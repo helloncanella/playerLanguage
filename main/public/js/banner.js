@@ -25,7 +25,7 @@
           "top": $("#banner").position().top,
           "transform": "translate(-50%,-100%)"
         });
-        balloonSelector.toggleClass('show-flex');
+        balloonSelector.addClass('show-flex');
         videoPosition = $('video').position();
         balloonPosition = balloonSelector.position();
         videoPosition.right = videoPosition.left + $('video').width();

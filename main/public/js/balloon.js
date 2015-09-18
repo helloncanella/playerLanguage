@@ -12,10 +12,13 @@ var balloon =
       }
     });
 
-    $('video').click(function(){
-      $('#balloon').toggleClass('show-flex');
-    })
-
+    $("#cinema").on("click", "video", function() {
+      if($('video').css('display')!='none'){
+        $('#balloon').removeClass('show-flex');
+        video.play();
+      }
+      window.getSelection().empty();
+    });
 
     $('#header li').click(function() {
       $(this).siblings().css({

@@ -47,7 +47,7 @@ module.exports = {
     var imagesOfpage;
     pages = new Array();
 
-    numberOfPages = 3
+    numberOfPages = 1;
 
     for(var i=1; i<=numberOfPages; i++){
       console.log(i);
@@ -60,6 +60,9 @@ module.exports = {
           'for': data.expression,
           'page': i,
           callback: function(err, images) {
+            if(err){
+              reject("<h3>No images for your selection</h3>")
+            }
             pageImages.push(images);
             if (pageImages.length === pages.length) {
               resolve(pageImages);
