@@ -5,7 +5,7 @@ var https = require('https');
 var Async = require('async');
 var srt2vtt = require('srt-to-vtt');
 var fs = require('fs');
-
+var vttPath;
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -32,24 +32,33 @@ router.get('/translation', function(req, res) {
 });
 
 router.get('/srt2vtt', function(req, res) {
+
   name = req.query.fileName;
-  subtitle = req.query.subtitle;
 
-  var srtPath = __dirname+'/../public/subtitles/'+name
+  if (!vttPath || name!=vttPath) {
+    subtitle = req.query.subtitle;
 
-  fs.writeFile(srtPath, subtitle, function(err) {
-    if (err) throw err;
-    console.log('It\'s saved!');
-  });
+    var srtPath = __dirname + '/../public/subtitles/' + name
 
-  var vttPath = __dirname+'/../public/subtitles/'+name + '.vtt'
+    fs.writeFile(srtPath, subtitle, function(err) {
+      if (err) throw err;
+    });
 
-  fs.createReadStream(srtPath)
-    .pipe(srt2vtt())
-    .pipe(fs.createWriteStream(vttPath))
+    vttPath = __dirname + '/../public/subtitles/' + name + '.vtt'
 
-  res.end('/subtitles/'+name + '.vtt');
-});
+    fs.createReadStream(srtPath)
+      .pipe(srt2vtt())
+      .pipe(fs.createWriteStream(vttPath))
+
+    vttPath = '/subtitles/' + name + '.vtt'
+
+  }
+
+  res.end(vttPath)
+
+
+})
+
 
 
 module.exports = router;

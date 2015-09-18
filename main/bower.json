@@ -11,5 +11,8 @@
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
     "masonry": "~3.3.2"
+  },
+  "devDependencies": {
+    "jquery-ui": "~1.11.4"
   }
 }

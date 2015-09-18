@@ -1,3 +1,9 @@
+var onFullscreen = false,
+    video = document.createElement('video'),
+    track =  document.createElement('track');
+
+var textTrack, textTrackList;
+
 var getFormatedTime = function(seconds) {
   var hours = Math.floor(seconds / 3600);
   var minutes = Math.floor((seconds - (hours * 3600)) / 60);

@@ -1,38 +1,42 @@
-body {
-  margin: 0;
-  padding: 0;
+#dropRegion.uploader {
+  margin: auto;
+  width: 62.18vw;
+  height: 62.18vh;
+  border: 2px dashed gray;
   display: flex; }
-  body .container {
-    margin: 0;
-    position: relative; }
-    body .container video, body .container:-webkit-full-screen {
-      width: 100% !important;
-      height: 100% !important;
-      background: transparent; }
-    body .container #banner {
-      opacity: 1;
-      background: transparent;
-      position: relative;
-      z-index: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-around; }
-      body .container #banner #subtitles {
-        text-align: center;
-        color: white;
-        position: relative;
-        font-size: 2em;
-        z-index: 15; }
-      body .container #banner .controls {
-        color: transparent; }
+  #dropRegion.uploader .text {
+    color: black;
+    text-align: center;
+    margin: auto; }
 
-.pausedVideo#banner {
-  opacity: 0.5 !important;
-  background: black !important; }
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; }
 
-.pausedVideo#subtitles,
-.pausedVideo.controls {
-  color: yellow !important; }
+#banner {
+  width: 100vw;
+  height: 20vh;
+  bottom: 10vh;
+  opacity: 1;
+  background: transparent;
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+  #banner #subtitles {
+    text-align: center;
+    color: white;
+    position: relative;
+    font-size: 2em;
+    z-index: 15; }
+  #banner .controls {
+    color: transparent; }
+  #banner.pausedVideo {
+    color: yellow !important;
+    opacity: 0.5 !important;
+    background: black !important; }
 
 #balloon {
   width: 400px;
@@ -107,3 +111,70 @@ body {
   #balloon a {
     text-decoration: none;
     color: inherit; }
+
+#controls {
+  width: 80vw;
+  height: 4.5283018868vw;
+  position: absolute;
+  bottom: 2vh;
+  left: 50vw;
+  transform: translate(-50%, 0);
+  visibility: hidden; }
+  #controls #progress .ui-slider-range {
+    background: #ef2929; }
+  #controls #progress .ui-slider-handle {
+    height: 0.8em;
+    width: 0.8em;
+    top: -0.05em;
+    border-radius: 31px; }
+  #controls #progress.ui-widget-content {
+    border: none; }
+  #controls #settings {
+    display: flex;
+    justify-content: space-between;
+    align-content: center; }
+    #controls #settings .left,
+    #controls #settings .right {
+      display: flex; }
+    #controls #settings #volume {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      display: flex;
+      align-content: center;
+      flex-direction: column; }
+      #controls #settings #volume #volume-control {
+        display: none;
+        position: absolute;
+        justify-content: center;
+        z-index: 5; }
+        #controls #settings #volume #volume-control .ui-slider-handle {
+          height: 0.8em;
+          width: 0.8em;
+          left: -0.05em;
+          border-radius: 31px; }
+        #controls #settings #volume #volume-control .ui-slider-range {
+          background: #edc832; }
+    #controls #settings .fa {
+      margin: 15px;
+      font-size: 2em !important; }
+
+body {
+  color: white;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column; }
+  body #cinema {
+    display: none; }
+
+.show-flex {
+  display: flex !important; }
+
+.show-block {
+  display: block !important; }

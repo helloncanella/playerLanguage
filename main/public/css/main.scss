@@ -12,7 +12,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow:hidden;
-  cursor: none;
+  // cursor: none;
   display:flex;
   align-content: center;
   justify-content: center;
@@ -29,4 +29,8 @@ body {
 //-auxiliary class
 .show-flex {
   display: flex !important;
+}
+
+.show-block{
+  display: block !important;
 }

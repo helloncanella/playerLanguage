@@ -1,13 +1,10 @@
 ;
-(function($, window, document) {
+(function($, window, document, video, textTrack, textTrackList) {
 
   var currentCue, lastClick, mouseXPosition;
 
-  var video = $("video")[0],
-    subtitles = $("#subtitles h1"),
-    balloon = $('#balloon'),
-    textTrack = video.textTracks[0],
-    textTrackList = textTrack.cues;
+  var subtitles = $("#subtitles h1"),
+      balloon = $('#balloon');
 
   video.click(function() {
     balloon.css({
@@ -15,17 +12,6 @@
     });
   });
 
-  textTrack.oncuechange = function() {
-    var currentSubtitle;
-    currentCue = this.activeCues[0];
-    $(".controls").css("visibility", "hidden");
-    $('#subtitles h1').text("");
-    if (currentCue) {
-      currentSubtitle = currentCue.text;
-      $(".controls").css("visibility", "visible");
-      return $('#subtitles h1').text(currentSubtitle);
-    }
-  };
 
   subtitles.on({
     mousedown: function(event) {
@@ -107,4 +93,4 @@
     video.play();
   });
 
-})(jQuery, window, document)
+})(jQuery, window, document, video, textTrack)

@@ -1,5 +1,5 @@
 ;
-(function($, window, document, onFullscreen) {
+(function($, window, document, onFullscreen, video, textTrack, textTrackList) {
   var lastMovement;
 
   //window's events
@@ -57,10 +57,7 @@
     keydown: function(event) {
       var lastPress, currentPress, indexCurrentCue, nextCue, previousCue;
 
-      var video = $("video")[0], textTrack,
-          textTrack = video.textTracks[0],
-          textTrackList = textTrack.cues,
-          currentCue = textTrack.activeCues[0];
+      var currentCue = textTrack.activeCues[0];
 
       var key = event.keyCode,
           previous = 37,
@@ -138,4 +135,4 @@
     }
 
   })
-})(jQuery, window, document, onFullscreen)
+})(jQuery, window, document, onFullscreen, video, textTrack, textTrackList)

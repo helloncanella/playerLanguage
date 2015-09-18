@@ -1,5 +1,5 @@
 ;
-(function($, window, document) {
+(function($, window, document, video, track) {
   var acceptedSubtitles = ["text/vtt", "application/x-subrip"];
   var supportedVideos = ["video/mp4", "video/ogg", "video/webm"];
 
@@ -50,7 +50,10 @@
                 subtitle: reader.result,
                 fileName: file.name
               }, function(vttURL) {
-                track.src = vttURL;
+                subtitleURL = vttURL;
+                console.log(vttURL);
+              }).fail(function(){
+                console.log("error");
               })
             }
             reader.readAsBinaryString(file);
@@ -69,20 +72,49 @@
       }
 
       if (videoFile && subtitleFile) {
-        var video = $('video')[0];
-        var track = $('track')[0];
 
         video.src = window.URL.createObjectURL(videoFile);
         track.src = subtitleURL;
 
+        $('#cinema').prepend(video);
+        $('video').append(track);
         $('.uploader').remove();
-        $('#cinema').addClass("show-flex");
+        $('#cinema').addClass("show-block");
 
-        video.play();
+        $('video').trigger('oncanplay');
+
+
+        video.oncanplay = function(){
+
+          textTrack = video.textTracks[0];
+          console.log(textTrack);
+          textTrack.mode="hidden";
+          textTrackList = textTrack.cues;
+
+          this.play();
+
+          textTrack.oncuechange = function() {
+            var currentSubtitle;
+            currentCue = this.activeCues[0];
+            $(".controls").css("visibility", "hidden");
+            $('#subtitles h1').text("");
+            if (currentCue) {
+              currentSubtitle = currentCue.text;
+              $(".controls").css("visibility", "visible");
+              return $('#subtitles h1').text(currentSubtitle);
+            }
+          };
+        }
+
+
+
+
+
+
       }
     }
   })
-})(jQuery, window, document)
+})(jQuery, window, document, video, track)
 
 
 

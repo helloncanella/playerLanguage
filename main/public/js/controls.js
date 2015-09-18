@@ -1,9 +1,6 @@
 ;
-(function($, window, document,onFullscreen) {
+(function($, window, document,onFullscreen, video, textTrack, textTrackList) {
   $(function() {
-
-    //click video/pause button;
-    var video = $('video')[0];
 
     //update clock
     video.onloadstart = function() {
@@ -110,4 +107,4 @@
       },
     })
   })
-})(jQuery, window, document, onFullscreen)
+})(jQuery, window, document, onFullscreen, video, textTrack, textTrackList)
