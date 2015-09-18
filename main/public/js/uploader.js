@@ -83,7 +83,6 @@
 
         $('video').trigger('oncanplay');
 
-
         video.oncanplay = function(){
 
           textTrack = video.textTracks[0];
@@ -105,11 +104,6 @@
             }
           };
         }
-
-
-
-
-
 
       }
     }

@@ -9,7 +9,8 @@
       this.onpause = function() {
         $('#playPause i').removeClass('fa-pause')
           .addClass('fa-play');
-      }
+      };
+
 
       this.onplay = function() {
         $('#playPause i').removeClass('fa-play')

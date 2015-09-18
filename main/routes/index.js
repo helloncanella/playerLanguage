@@ -6,6 +6,7 @@ var Async = require('async');
 var srt2vtt = require('srt-to-vtt');
 var fs = require('fs');
 var vttPath;
+var previousName;
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -35,7 +36,7 @@ router.get('/srt2vtt', function(req, res) {
 
   name = req.query.fileName;
 
-  if (!vttPath || name!=vttPath) {
+  if (!vttPath || name!=previousName) {
     subtitle = req.query.subtitle;
 
     var srtPath = __dirname + '/../public/subtitles/' + name
@@ -51,6 +52,8 @@ router.get('/srt2vtt', function(req, res) {
       .pipe(fs.createWriteStream(vttPath))
 
     vttPath = '/subtitles/' + name + '.vtt'
+
+    previousName = name;
 
   }
 

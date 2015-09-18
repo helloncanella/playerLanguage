@@ -7,7 +7,7 @@
     load: function(event) {
       onFullscreen = false;
     },
-
+    
     click: function(event) {
       $("#volume-control").removeClass('show-flex')
     },
