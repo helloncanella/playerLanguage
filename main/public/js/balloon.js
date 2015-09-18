@@ -13,7 +13,7 @@ var balloon =
     });
 
     $("#cinema").on("click", "video", function() {
-      if($('video').css('display')!='none'){
+      if ($('video').css('display') != 'none') {
         $('#balloon').removeClass('show-flex');
         video.play();
       }
@@ -22,7 +22,7 @@ var balloon =
 
     $('#header li').click(function() {
       $(this).siblings().css({
-        "background": "gray"
+        "background": "gray",
       });
       $(this).css({
         "background": "white"

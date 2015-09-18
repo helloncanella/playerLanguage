@@ -2,29 +2,39 @@
 #balloon {
   width: 400px;
   position: absolute;
-  top:0;
+  top: 0;
   height: auto;
   display: none;
   flex-direction: column;
+  background: none;
+  border: none;
   & > ul {
     height: 50px;
     list-style-type: none;
     padding: 0;
     display: flex;
     margin: 0;
-    li:not(:first-child) {
-
-      // margin-left: 3vw;
+    background: none;
+    border: none;
+    a:link {
+      color: inherit;
     }
     li {
-      z-index: 10;
+      z-index: 1;
+      margin: 0;
+      border: none;
       background: gray;
       position: relative;
       top: 1px;
-      // border: $thinGray;
       border-bottom: none;
       border-radius: 5px 5px 0 0;
       display: flex;
+      &.ui-state-default {
+        color: black;
+      }
+      &.ui-state-active {
+        color: #c00;
+      }
       a {
         padding: 7px 15px;
         margin: auto;
@@ -37,7 +47,8 @@
   .content {
     z-index: 2;
     position: relative;
-    background:white;
+    background: white;
+
     // border: $thinGray;
     border-radius: 0 5px 5px 5px;
     display: flex;
@@ -69,14 +80,13 @@
         #text {
 
         }
-        #list-translation {
-          li:not(:first-child) {
+        #list-translation {li:not(:first-child) {
             padding-top: 5px;
           }
         }
       }
     }
-    #images-content{
+    #images-content {
       margin: 4% !important;
       display: flex;
       flex-wrap: wrap;
@@ -94,7 +104,7 @@
     top: 10px;
     right: 10px;
   }
-  .show{
+  .show {
 
   }
   h2 {
