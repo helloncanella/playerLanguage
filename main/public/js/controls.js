@@ -101,8 +101,10 @@
     $('#fullScreen').on({
       click: function(event) {
         if (onFullscreen) {
+          onFullscreen = false;
           $(window).trigger("disablefullscreen");
         } else {
+          onFullscreen = true;
           $(window).trigger("enablefullscreen");
         }
       },

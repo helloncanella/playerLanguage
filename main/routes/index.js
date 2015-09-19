@@ -40,6 +40,8 @@ router.post('/srt2vtt', function(req, res) {
   if (name!=previousName) {
     subtitle = req.body.subtitle;
 
+    req.setEncoding('ucs2');
+
     var srtPath = __dirname + '/../public/subtitles/' + name
 
     fs.writeFile(srtPath, subtitle, function(err) {
