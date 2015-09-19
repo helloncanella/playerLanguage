@@ -85,19 +85,21 @@
           }
 
           subtitleFile = file;
+
           if (format == "text/vtt") {
             subtitleURL = window.URL.createObjectURL(subtitleFile);
           } else {
             var reader = new FileReader();
             reader.onload = function(e) {
-              $.get("/srt2vtt", {
+              $.post("/srt2vtt", {
                 subtitle: reader.result,
                 fileName: file.name
               }, function(vttURL) {
                 subtitleURL = vttURL;
+                console.log('ok');
                 verifier();
               }).fail(function(error) {
-                alert(error);
+                console.log(fail());
               })
             }
             reader.readAsBinaryString(file);

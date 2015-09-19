@@ -5,10 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
 var routes = require('./routes/index');
 var users = require('./routes/user');
 
 var app = express();
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;

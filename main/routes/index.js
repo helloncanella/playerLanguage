@@ -32,12 +32,13 @@ router.get('/translation', function(req, res) {
   });
 });
 
-router.get('/srt2vtt', function(req, res) {
+router.post('/srt2vtt', function(req, res) {
 
-  name = req.query.fileName;
+  name = req.body.fileName;
+  console.log(name);
 
   if (name!=previousName) {
-    subtitle = req.query.subtitle;
+    subtitle = req.body.subtitle;
 
     var srtPath = __dirname + '/../public/subtitles/' + name
 
